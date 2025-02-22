@@ -7,6 +7,7 @@ import SignupPage from './components/SignupPage';
 import LoginPage from './components/LoginPage';
 import PageTransition from './components/PageTransition';
 import Dashboard from './components/Dashboard.jsx';
+import Community from './components/Community.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -49,6 +50,14 @@ createRoot(document.getElementById('root')).render(
           element={
             <PageTransition>
               <LoginPage />
+            </PageTransition>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <PageTransition>
+              <Community />
             </PageTransition>
           }
         />

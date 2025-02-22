@@ -1,7 +1,7 @@
 import React from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
-import GoogleSignInButton from './GoogleSignInButton';
+// import GoogleSignInButton from './GoogleSignInButton';
 
 function LoginPage() {
   return (
@@ -34,12 +34,12 @@ function LoginPage() {
                 <label htmlFor="password">Password</label>
                 <input type="password" name='password' placeholder="your-password" />
               </div>
-              <button type="submit"><Link to="/home">Sign in <i className="ri-arrow-right-line"></i></Link></button>
+              <button type="button"><Link to="/home">Sign in <i className="ri-arrow-right-line"></i></Link></button>
             </form>
           </div>
           <div className="border-div"></div>
           <div className="right">
-            <GoogleSignInButton />
+            {/* <GoogleSignInButton /> */}
           </div>
         </div>
       </div>

@@ -1,10 +1,50 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { gsap } from 'gsap'
 import './home.css'
 
 function Dashboard() {
+  const [menuVisible, setMenuVisible] = useState(false);
+  const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+    if (!menuVisible) {
+      gsap.to(".menu-container", { duration: 0.5, x: 0, opacity: 1, display: 'flex' });
+      document.body.style.overflowX = 'hidden'; // Prevent horizontal scroll
+    } else {
+      gsap.to(".menu-container", { duration: 0.5, x: 300, opacity: 0, display: 'none' });
+      document.body.style.overflowX = 'auto'; // Restore horizontal scroll
+    }
+  };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setMenuVisible(false);
+      gsap.to(".menu-container", { duration: 0.5, x: 300, opacity: 0, display: 'none' });
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className='home min-h-screen w-full'>
+    <div className='home h-screen w-full overflow-x-hidden'>
+        <div ref={menuRef} className="menu-container overflow-x-hidden" style={{ transform: 'translateX(300px)', opacity: 0, display: 'none', zIndex: 1 }}>
+            <ul>
+                <li><Link to="/signin">Home</Link></li>
+                <div className="border-div"></div>
+                <li><Link to="/community">Community</Link></li>
+                <div className="border-div"></div>
+                <li><Link to="/parentlogin">LinkedIn Learning</Link></li>
+                <div className="border-div"></div>
+                <li><Link to="/parentlogin">Certificates</Link></li>
+            </ul>
+        </div>
         <nav className="navbar">
             <div className="logo">
                 <a href="/">DigiLearn</a>
@@ -14,7 +54,7 @@ function Dashboard() {
                     <li><Link to="/signin">Home</Link></li>
                     <li><Link to="/signup">Courses</Link></li>
                     <li><Link to="/parentlogin">Account</Link></li>
-                    <li><i class="ri-menu-4-line"></i></li>
+                    <li><button className='menu-button' onClick={toggleMenu} style={{ zIndex: 2 }}><i className="ri-menu-4-line"></i></button></li>
                 </ul>
             </div>
       </nav> 

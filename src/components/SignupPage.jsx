@@ -1,7 +1,6 @@
 import React from 'react';
 import './login.css';
 import { Link } from 'react-router-dom';
-import GoogleSignInButton from './GoogleSignInButton';
 
 function SignupPage() {
   return (
@@ -28,18 +27,17 @@ function SignupPage() {
             <form action="">
               <div className="input-box">
                 <label htmlFor="email">Email Address</label>
-                <input type="text" name='email' placeholder="your-email@example.com" required/>
+                <input type="text" name='email' placeholder="your-email@example.com"/>
               </div>
               <div className="input-box">
                 <label htmlFor="password">Password</label>
-                <input type="password" name='password' placeholder="your-password" required/>
+                <input type="password" name='password' placeholder="your-password"/>
               </div>
-              <button type="submit">Sign Up<i className="ri-arrow-right-line"></i></button>
+              <button type="">Sign Up<i className="ri-arrow-right-line"></i></button>
             </form>
           </div>
           <div className="border-div"></div>
           <div className="right">
-            <GoogleSignInButton />
           </div>
         </div>
       </div>
